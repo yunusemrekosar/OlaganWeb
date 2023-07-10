@@ -1,8 +1,11 @@
+using OlaðanWeb.LoginService;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddLoginServices();
 
 builder.Services.AddHttpContextAccessor();
 
@@ -10,7 +13,7 @@ builder.Services.AddDistributedMemoryCache();
 
 builder.Services.AddSession(options =>
 {
-    options.IdleTimeout = TimeSpan.FromSeconds(10);
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
@@ -32,6 +35,14 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseSession();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+      name: "areas",
+      pattern: "{area:exists}/{controller=Admin}/{action=Index}/{id?}"
+    );
+});
 
 app.MapControllerRoute(
     name: "default",

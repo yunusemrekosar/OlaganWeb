@@ -20,6 +20,7 @@ namespace OlağanWeb.Models
         public string Referances { get; set; }
         [Required]
         public string Summary { get; set; }
+
         [Required]
         public bool PublishedInOlaganSiir { get; set; }
     }

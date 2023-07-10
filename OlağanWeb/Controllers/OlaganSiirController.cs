@@ -1,13 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.WebUtilities;
+using Newtonsoft.Json;
+using OlağanWeb.LoginService;
 using OlağanWeb.Models;
 using System.Data.SqlClient;
-using System.Reflection;
+using System.Net;
+using System.Net.Http;
 
 namespace OlağanWeb.Controllers;
 
 public class OlaganSiirController : Controller
 {
     readonly IConfiguration _configuration;
+
 
     public OlaganSiirController(IConfiguration configuration)
     {
@@ -106,7 +111,8 @@ public class OlaganSiirController : Controller
                 }
             }
         }
-        var ViewModels = new ContentVM {
+        var ViewModels = new ContentVM
+        {
             CommentModels = comments,
             TextModels = texts
 
@@ -176,8 +182,10 @@ public class OlaganSiirController : Controller
     }
 
     [HttpPost]
-    public IActionResult PostComment(CommentModel Comment)
+    public async Task<IActionResult> PostComment(CommentModel Comment)
     {
+       
+
         using (SqlConnection connection = new SqlConnection(_configuration["ConnectionStrings:sql"]))
         {
             connection.Open();
@@ -189,7 +197,7 @@ public class OlaganSiirController : Controller
             command.Parameters.AddWithValue("@Email", Comment.Email);
             command.ExecuteNonQuery();
         }
-        ModelState.Clear();
+
         return NoContent();
     }
 }

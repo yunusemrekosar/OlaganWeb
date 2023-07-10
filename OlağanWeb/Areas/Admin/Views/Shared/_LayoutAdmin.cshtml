@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Olağan</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="icon" href="~/img/icon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/OlağanWeb.styles.css" asp-append-version="true" />
+    <script src="~/js/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
+
+</head>
+<body style="background-color: #faf5f1;">
+    <header>
+
+        <nav>
+            <ul>
+                <li><a href="/"> <img src="~/img/AnasayfaIconu.png" /></a></li>
+                <li class="dropdown">
+                    <a href="#">Yorumlar</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/admin/commentcontrol">Onay Bekleyen Yorumlar</a></li>
+                        <li><a href="/admin/commentcontrol?active=@true">Onaylı Yorumlar</a></li>
+                    </ul>
+                </li>
+                <li><a href="/admin/addtext">Yazı Ekle</a></li>
+
+                @*sor*@
+                <li class="rightli" style="float:right;">
+                    <form action="/index" method="get">
+                        <input class="form-control me-2" name="SearchedThing" type="search" placeholder="Search" />
+                    </form>
+                </li>
+                <li class="rightli" style="float:right; ">
+                    <a href="#"> Ara</a>
+                </li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+     <script>
+        tinymce.init({
+            selector: 'textarea#default'
+        });
+    </script>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>

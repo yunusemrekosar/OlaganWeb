@@ -18,7 +18,7 @@ public class TextModel
 
     public string Text { get; set; }
 
-    public string Referances{ get; set; }
+    public string? Referances{ get; set; }
 
     public string Summary { get; set; }
 

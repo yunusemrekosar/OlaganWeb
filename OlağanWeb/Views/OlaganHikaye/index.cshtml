@@ -1,14 +1,14 @@
-﻿@*@model List<OlağanWeb.Models.TextModel>*@
+﻿@model List<OlağanWeb.Models.TextModel>
 
 <link rel="stylesheet" href="~/css/index.css">
 
 <div class="col-md-1"> </div>
 
 <div class="col-md-10" style="position:absolute; margin-top:50px; justify-content: space-between; display:flex; flex-wrap:wrap;">
-
-
-    @*@foreach (var item in Model)*@
-    @for (int i = 0; i < 20; i++)
+    @if (Model != null)
+    {
+        
+    @foreach (var item in Model)
     {
         <div style="width: 17rem;  margin-top: 70px;">
             <img src="~/img/olaganhikaye1.svg" style="height:150px;" class="card-img-top" alt="...">
@@ -19,6 +19,10 @@
 
             </div>
         </div>
+    }
+    }else
+    {
+            <h1> olağan hikaye için henüz veri girilmedi</h1>
     }
 </div>
 

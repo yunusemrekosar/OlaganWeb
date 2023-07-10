@@ -1,0 +1,31 @@
+﻿@{
+    Layout = "_LayoutAdmin";
+}
+
+@model List<OlağanWeb.Models.TextModel>
+
+<link rel="stylesheet" href="~/css/index.css">
+
+<div class="col-md-1"> </div>
+
+<div class="col-md-10" style="position:absolute; margin-top:50px; justify-content: space-between; display:flex; flex-wrap:wrap;">
+
+    @for (int i = 0; i < 5; i++)
+    {
+        @foreach (var item in Model)
+        {
+            <div style="width: 17rem;  margin-top: 3vh;">
+                <img src=@item.picture style="height:150px;" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title ">@item.Writer<br> <i>@item.Category</i>  </h5>
+                    <a href="/OlaganSiir/content?a=@item.Id" class="btn btn-primary" style="width:240px; height:85.6px; text-align:center;">@item.Title </a>
+                    <div style = "width:240px; text-align:center;">
+                        <a href="/admin/updatetext?a=@item.Id" class="btn btn-primary"> Düzenle </a>
+                        <a href="/admin/deletetext?a=@item.Id" class="btn btn-primary"> Sil</a>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>
+
